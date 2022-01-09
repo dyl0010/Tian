@@ -13,8 +13,8 @@
 }
 
 :root {
-    --middle-tian-width: 100px;
-    --middle-tian-height: 100px;
+    --middle-tian-width: 80px;
+    --middle-tian-height: 80px;
 }
 
 html, body {
@@ -39,7 +39,7 @@ html, body {
 #lishu-tian, #songti-tian {
     width: var(--middle-tian-width);
     height: var(--middle-tian-height);
-    border: 2px solid #db564f;
+    border: 2px solid #a61b29;
     position: relative;
     margin-top: 100px;
     margin-left: 75px;
@@ -58,15 +58,17 @@ html, body {
 /* `田` cell implement */
 
 #lishu-word {
-    /* font-family: "华文隶书"; */
-    font-size: 5em;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: black;
     width: inherit;
     height: inherit;
+    padding: 0;
+    margin: 0;
+    font-family: "华文隶书";
+    font-size: 5.5em;
+    /* display: inline-flex;
+    align-items: center;
+    justify-content: center; */
+    text-align: center;
+    color: black;
     position: relative;
     border: 1px solid black;
 }
@@ -74,7 +76,7 @@ html, body {
 .hor-middle-line {
     width: inherit;
     height: inherit;
-    border-top: 2px dashed #db564f;
+    border-top: 1px dashed #a61b29;
     position: absolute;
     left: 0;
     top: calc(var(--middle-tian-height)/2);
@@ -84,7 +86,7 @@ html, body {
 .ver-middle-line {
     width: inherit;
     height: inherit;
-    border-left: 2px dashed #db564f;
+    border-left: 1px dashed #a61b29;
     position: absolute;
     top: 0;
     left: calc(var(--middle-tian-width)/2);
@@ -94,7 +96,7 @@ html, body {
 .ver-left-line {
     width: inherit;
     height: inherit;
-    border-left: 1px dashed #db564f;
+    border-left: 1px dashed #a61b29;
     position: absolute;
     top: 0;
     left: calc(var(--middle-tian-width)/3);
@@ -104,7 +106,7 @@ html, body {
 .hor-top-line {
     width: inherit;
     height: inherit;
-    border-top: 1px dashed #db564f;
+    border-top: 1px dashed #a61b29;
     position: absolute;
     left: 0;
     top: calc(var(--middle-tian-height)/3);
@@ -114,7 +116,7 @@ html, body {
 .ver-right-line {
     width: inherit;
     height: inherit;
-    border-left: 1px dashed #db564f;
+    border-left: 1px dashed #a61b29;
     position: absolute;
     top: 0;
     left: calc(var(--middle-tian-width)*2/3);
@@ -124,7 +126,7 @@ html, body {
 .hor-bottom-line {
     width: inherit;
     height: inherit;
-    border-top: 1px dashed #db564f;
+    border-top: 1px dashed #a61b29;
     position: absolute;
     left: 0;
     top: calc(var(--middle-tian-height)*2/3);
@@ -134,20 +136,22 @@ html, body {
 .dia-left-line {
     width: calc(var(--middle-tian-width)*1.414);
     height: calc(var(--middle-tian-height)*1.414);
-    border-left: 2px dashed #db564f;
+    border-left: 1px dashed #a61b29;
     position: absolute;
     transform-origin: top left;
     transform: rotate(-45deg);
+    visibility: hidden;
 }
 
 .dia-right-line {
     width: calc(var(--middle-tian-width)*1.414);
     height: calc(var(--middle-tian-height)*1.414);
-    border-left: 2px dashed #db564f;;
+    border-left: 1px dashed #a61b29;
     position: absolute;
     left: 100%;
     transform-origin: top left;
     transform: rotate(45deg);
+    visibility: hidden;
 }
 
 /* `田` cell implement end */
@@ -192,6 +196,13 @@ html, body {
 #words-pad {
     flex: 5 5 450px;
     background-color: #f0eae9;
+    border-left: 2px solid #a61b29;
+    border-top: 2px solid #a61b29;
+
+    /* experiment */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 /* word block */
@@ -239,5 +250,8 @@ html, body {
 /* word block `guide layer` */
 #words-pad .word-block span {
     color: #bbb5b9;
-    /* border: 1px solid blue; */
+    position: relative;
+    border: 2px solid #a61b29;
+    border-left: none;
+    border-top: none;
 }

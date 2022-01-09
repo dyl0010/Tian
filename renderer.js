@@ -5,7 +5,8 @@
 // selectively enable features needed in the rendering
 // process.
 
-let text = "〇口田回国，愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声，，，"
+let text = '愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光。就令萤火一般，也可以在黑暗里发一点光，不必等候炬火。此后如竟没有炬火，我便是唯一的光。'
+let test_text = '〇口田回国'
 let one_radical = '一丨丶丿乙亅口'
 let two_radical = '二亠人儿入八冂冖冫几凵刀力勹匕匚匸十卜卩厂厶又'
 
@@ -33,7 +34,18 @@ words_pad.addEventListener('click', (event) => {
 
 for (let i = 0; i < text.length; ++i) {
   words_pad.insertAdjacentHTML('beforeend', 
-      `<div class="word-block"><span>${text[i]}</span><input type="text" spellcheck="false"></div>`)
+      `<div class="word-block">
+        <label class="ver-middle-line"></label>
+        <label class="hor-middle-line"></label>
+        <label class="ver-left-line"></label>
+        <label class="hor-top-line"></label>
+        <label class="ver-right-line"></label>
+        <label class="hor-bottom-line"></label>
+        <label class="dia-left-line"></label>
+        <label class="dia-right-line"></label>
+        <span class="guide-layer">${text[i]}</span>
+        <input class="typing-layer" type="text" spellcheck="false">
+      </div>`)
 }
 
 // ----------------------------------------------------------------------------
@@ -48,14 +60,22 @@ function prepare_sound_effects() {
   // ...
 }
 
+function get_child_by_class(nodes, classname) {
+  for (let i = 0; i < nodes.length; ++i) {
+    if (nodes[i].className == classname) {
+      return nodes[i]
+    }
+  }
+}
+
 // ----------------------------------------------------------------------------
 // `word block` list structure
 
 const wbs = document.getElementsByClassName('word-block')
 let word_blocks = Array.prototype.slice.call(wbs)
 let current = 0
-const guide_span = 0;
-const typing_input = 1;
+// const guide_span = 0;
+// const typing_input = 1;
 
 function next() {
   if ((++current) <= (word_blocks.length) - 1) {
@@ -66,14 +86,18 @@ function next() {
 }
 
 function focus_current() {
-  word_blocks[current].childNodes.item(1).focus()
+  get_child_by_class(word_blocks[current].childNodes, 'typing-layer').focus()
 }
 
 function focus_next() {
-  word_blocks[current].childNodes.item(guide_span).style.color = "transparent"
-  word_blocks[current].childNodes.item(typing_input).style.color = "#26243d"
-  word_blocks[current].childNodes.item(typing_input).value = word_blocks[current].childNodes.item(guide_span).innerText
-  word_blocks[current].childNodes.item(typing_input).readonly = "readonly"
+  let guide_node = get_child_by_class(word_blocks[current].childNodes, "guide-layer")
+  guide_node.style.color = "transparent"
+
+  let typing_node = get_child_by_class(word_blocks[current].childNodes, "typing-layer")
+  typing_node.style.color = "#26243d"
+  typing_node.value = guide_node.innerText
+  typing_node.readonly = "readonly"
+  
   next()
   focus_current()
 }
@@ -93,11 +117,11 @@ function match_words(words) {
 }
 
 function get_current_guide_word() {
-  return word_blocks[current].childNodes.item(guide_span).innerText
+  return get_child_by_class(word_blocks[current].childNodes, 'guide-layer').innerText
 }
 
 function reset_current_typing_word() {
-  word_blocks[current].childNodes.item(typing_input).value = ""
+  get_child_by_class(word_blocks[current].childNodes, 'typing-layer').value = ''
 }
 
 // ----------------------------------------------------------------------------
