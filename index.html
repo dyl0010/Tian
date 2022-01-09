@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  </head>
+    <link href="./styles.css" rel="stylesheet">
+    <title>Tian</title>
+  <body>
+    <!-- We are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>.
+
+    <br> -->
+
+    <audio id="sound-effects">
+      <source src="./resource/sound/click.wav">
+    </audio>
+
+    <div id="main-layout">
+      <div id="detail-panel">
+        <div id="lishu-tian">
+          <label class="ver-middle-line"></label>
+          <label class="hor-middle-line"></label>
+          <label class="ver-left-line"></label>
+          <label class="hor-top-line"></label>
+          <label class="ver-right-line"></label>
+          <label class="hor-bottom-line"></label>
+          <label class="dia-left-line"></label>
+          <label class="dia-right-line"></label>
+          <span id="lishu-word"></span>
+        </div>
+        <div id="songti-tian">
+          <label class="ver-middle-line"></label>
+          <label class="hor-middle-line"></label>
+          <label class="ver-left-line"></label>
+          <label class="hor-top-line"></label>
+          <label class="ver-right-line"></label>
+          <label class="hor-bottom-line"></label>
+          <label class="dia-left-line"></label>
+          <label class="dia-right-line"></label>
+          <span id="songti-word"></span>
+        </div>
+      </div>
+      <div id="right-panel">
+        <div id="words-radical"></div>
+        <div id="echo-widget"></div>
+        <div id="words-pad"></div>
+      </div>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>

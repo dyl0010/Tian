@@ -1,0 +1,243 @@
+/* styles.css */
+
+/* Add styles here to customize the appearance of your app */
+
+@font-face {
+    font-family: "SourceHanSerifCN-Regular";
+    src: url("./resource/fonts/SourceHanSerifCN-Regular.ttf");
+}
+
+@font-face {
+    font-family: "SourceHanSansCN-Regular";
+    src: url("./resource/fonts/SourceHanSansCN-Regular.otf");
+}
+
+:root {
+    --middle-tian-width: 100px;
+    --middle-tian-height: 100px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#main-layout {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#detail-panel {
+    background-color: #e3c07c;
+    flex: 1 1 250px;
+}
+
+#lishu-tian, #songti-tian {
+    width: var(--middle-tian-width);
+    height: var(--middle-tian-height);
+    border: 2px solid #db564f;
+    position: relative;
+    margin-top: 100px;
+    margin-left: 75px;
+}
+
+#songti-word {
+    font-family: "SourceHanSerifCN-Regular";
+    font-size: 4.2em;
+    text-align: center;
+    color: black;
+    width: inherit;
+    height: inherit;
+    position: relative;
+}
+
+/* `田` cell implement */
+
+#lishu-word {
+    /* font-family: "华文隶书"; */
+    font-size: 5em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: black;
+    width: inherit;
+    height: inherit;
+    position: relative;
+    border: 1px solid black;
+}
+
+.hor-middle-line {
+    width: inherit;
+    height: inherit;
+    border-top: 2px dashed #db564f;
+    position: absolute;
+    left: 0;
+    top: calc(var(--middle-tian-height)/2);
+    /* visibility: hidden; */
+}
+
+.ver-middle-line {
+    width: inherit;
+    height: inherit;
+    border-left: 2px dashed #db564f;
+    position: absolute;
+    top: 0;
+    left: calc(var(--middle-tian-width)/2);
+    /* visibility: hidden; */
+}
+
+.ver-left-line {
+    width: inherit;
+    height: inherit;
+    border-left: 1px dashed #db564f;
+    position: absolute;
+    top: 0;
+    left: calc(var(--middle-tian-width)/3);
+    visibility: hidden;
+}
+
+.hor-top-line {
+    width: inherit;
+    height: inherit;
+    border-top: 1px dashed #db564f;
+    position: absolute;
+    left: 0;
+    top: calc(var(--middle-tian-height)/3);
+    visibility: hidden;
+}
+
+.ver-right-line {
+    width: inherit;
+    height: inherit;
+    border-left: 1px dashed #db564f;
+    position: absolute;
+    top: 0;
+    left: calc(var(--middle-tian-width)*2/3);
+    visibility: hidden;
+}
+
+.hor-bottom-line {
+    width: inherit;
+    height: inherit;
+    border-top: 1px dashed #db564f;
+    position: absolute;
+    left: 0;
+    top: calc(var(--middle-tian-height)*2/3);
+    visibility: hidden;
+}
+
+.dia-left-line {
+    width: calc(var(--middle-tian-width)*1.414);
+    height: calc(var(--middle-tian-height)*1.414);
+    border-left: 2px dashed #db564f;
+    position: absolute;
+    transform-origin: top left;
+    transform: rotate(-45deg);
+}
+
+.dia-right-line {
+    width: calc(var(--middle-tian-width)*1.414);
+    height: calc(var(--middle-tian-height)*1.414);
+    border-left: 2px dashed #db564f;;
+    position: absolute;
+    left: 100%;
+    transform-origin: top left;
+    transform: rotate(45deg);
+}
+
+/* `田` cell implement end */
+
+#right-panel {
+    flex: 8 8 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* word progress panel implement */
+
+#words-radical {
+    flex: 1 1 50px;
+    background-color: #f0eae9;
+    border-bottom: 1px solid #d8d3d3;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#words-radical span {
+    width: 28px;
+    height: 28px;
+    font-size: 1em;
+    color: #afafaf;
+    background-color: #f3f3f3;
+    margin-left: 3px;
+    text-align: center;
+}
+
+/* word progress panel implement end */
+
+#echo-widget {
+    flex: 1 1 50px;
+    background-color: #f0eae9;
+    border-bottom: 1px solid #d8d3d3;
+    font-size: 2em;
+    text-align: center;
+}
+
+#words-pad {
+    flex: 5 5 450px;
+    background-color: #f0eae9;
+}
+
+/* word block */
+#words-pad .word-block {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    /* border: 1px solid salmon; */
+}
+
+/* sync style word block `typing layer' and `guide layer` */
+#words-pad .word-block input, span {
+    width: inherit;
+    height: inherit;
+    padding: 0;
+    margin: 0;
+    font-family: "SourceHanSerifCN-Regular";
+    font-size: 4em;
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+/* word block `typing layer` */
+#words-pad .word-block input {
+    caret-color: black;
+    color: transparent;
+    background-color: transparent;
+    outline: none;
+    border-style: none;
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+#words-pad .word-block input:focus {
+    outline: none;
+    border-style: none;
+}
+
+/* word block `guide layer` */
+#words-pad .word-block span {
+    color: #bbb5b9;
+    /* border: 1px solid blue; */
+}

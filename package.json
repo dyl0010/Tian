@@ -1,0 +1,16 @@
+{
+  "name": "damaging-print-trap-dbian",
+  "productName": "damaging-print-trap-dbian",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "zhumo",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "16.0.6"
+  }
+}
