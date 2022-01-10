@@ -12,6 +12,11 @@
     src: url("./resource/fonts/SourceHanSansCN-Regular.otf");
 }
 
+@font-face {
+    font-family: "FZQingKBYSJW-R";
+    src: url("./resource/fonts/FZQingKBYSJW-R.TTF");
+}
+
 :root {
     --middle-tian-width: 80px;
     --middle-tian-height: 80px;
@@ -198,6 +203,7 @@ html, body {
     background-color: #f0eae9;
     border-left: 2px solid #a61b29;
     border-top: 2px solid #a61b29;
+    position: relative;
 
     /* experiment */
     display: flex;
@@ -220,7 +226,7 @@ html, body {
     height: inherit;
     padding: 0;
     margin: 0;
-    font-family: "SourceHanSerifCN-Regular";
+    font-family: "FZQingKBYSJW-R";
     font-size: 4em;
     display: inline-flex;
     text-align: center;
@@ -255,3 +261,14 @@ html, body {
     border-left: none;
     border-top: none;
 }
+
+.spot-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+/* <circle cx="0" cy="0" r="2" fill="rgba(237,81,38, 0.7)" /> */

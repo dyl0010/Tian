@@ -44,7 +44,14 @@ for (let i = 0; i < text.length; ++i) {
         <label class="dia-left-line"></label>
         <label class="dia-right-line"></label>
         <span class="guide-layer">${text[i]}</span>
-        <input class="typing-layer" type="text" spellcheck="false">
+        <input class="typing-layer" type="text" tabindex="-1" spellcheck="false">
+        <div class="spot-container">
+          <svg class="spot-svg" viewBox="-4.5 -4.5 9 9" xmlns="http://www.w3.org/2000/svg">
+            <g>
+              <circle cx="0" cy="0" r="2" fill="rgba(166,27,41, 0.6)" />
+            </g>
+          </svg>
+        </div>
       </div>`)
 }
 
@@ -62,7 +69,7 @@ function prepare_sound_effects() {
 
 function get_child_by_class(nodes, classname) {
   for (let i = 0; i < nodes.length; ++i) {
-    if (nodes[i].className == classname) {
+    if (nodes[i].className === classname) {
       return nodes[i]
     }
   }
@@ -74,8 +81,6 @@ function get_child_by_class(nodes, classname) {
 const wbs = document.getElementsByClassName('word-block')
 let word_blocks = Array.prototype.slice.call(wbs)
 let current = 0
-// const guide_span = 0;
-// const typing_input = 1;
 
 function next() {
   if ((++current) <= (word_blocks.length) - 1) {
@@ -94,7 +99,7 @@ function focus_next() {
   guide_node.style.color = "transparent"
 
   let typing_node = get_child_by_class(word_blocks[current].childNodes, "typing-layer")
-  typing_node.style.color = "#26243d"
+  typing_node.style.color = '#000000'
   typing_node.value = guide_node.innerText
   typing_node.readonly = "readonly"
   
@@ -111,6 +116,7 @@ function match_words(words) {
     } else {
       console.log('guide !== typing')
       reset_current_typing_word()
+      mark_spot()
       break
     }
   }
@@ -124,6 +130,17 @@ function reset_current_typing_word() {
   get_child_by_class(word_blocks[current].childNodes, 'typing-layer').value = ''
 }
 
+function mark_spot() {
+  const spot_node = get_child_by_class(word_blocks[current].childNodes, 'spot-container')
+  const spot_svg = spot_node.getElementsByTagName('svg')[0]
+  // console.log(spot_svg.viewBox.baseVal.width - 1)
+  const pos_decrease = Math.min(spot_svg.viewBox.baseVal.x + 0.5, -2)
+  const size_increase = Math.max(spot_svg.viewBox.baseVal.width - 1, 4)
+  spot_svg.setAttribute("viewBox", `${pos_decrease} ${pos_decrease} ${size_increase} ${size_increase}`); 
+
+  spot_node.style.visibility = 'visible'
+}
+
 // ----------------------------------------------------------------------------
 // `word block` event handler
 
@@ -132,6 +149,7 @@ function handle_input(event) {
 }
 
 function handle_compositionstart(event) {
+  console.log(event.target.value)
 }
 
 function handle_compositionupdate(event) {
@@ -146,10 +164,15 @@ function handle_compositionend(event) {
 }
 
 for (let i = 0; i < word_blocks.length; ++i) {
-  word_blocks[i].addEventListener('input', handle_input)
-  word_blocks[i].addEventListener('compositionstart', handle_compositionstart)
-  word_blocks[i].addEventListener('compositionupdate', handle_compositionupdate)
-  word_blocks[i].addEventListener('compositionend', handle_compositionend)
+  const typing_node = get_child_by_class(word_blocks[i].childNodes, 'typing-layer')
+
+  typing_node.addEventListener('input', handle_input)
+  typing_node.addEventListener('compositionstart', handle_compositionstart)
+  typing_node.addEventListener('compositionupdate', handle_compositionupdate)
+  typing_node.addEventListener('compositionend', handle_compositionend)
+  typing_node.onpaste = () => {return false;}
+  typing_node.ondrop = () => {return false;}
+  typing_node.autocomplete = 'off'
 
   focus_current()
   lishu_word.innerText = get_current_guide_word()
