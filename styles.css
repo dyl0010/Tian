@@ -25,57 +25,33 @@
 html, body {
     margin: 0;
     padding: 0;
+    background-color: black;
 }
 
 #main-layout {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: auto 250px;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+    /* border: 3px solid black; */
 }
 
 #detail-panel {
     background-color: #e3c07c;
-    flex: 1 1 250px;
-}
-
-#lishu-tian, #songti-tian {
-    width: var(--middle-tian-width);
-    height: var(--middle-tian-height);
-    border: 2px solid #a61b29;
-    position: relative;
-    margin-top: 100px;
-    margin-left: 75px;
-}
-
-#songti-word {
-    font-family: "SourceHanSerifCN-Regular";
-    font-size: 4.2em;
-    text-align: center;
-    color: black;
-    width: inherit;
-    height: inherit;
-    position: relative;
+    /* border: 1px solid aquamarine; */
 }
 
 /* `田` cell implement */
 
 #lishu-word {
-    width: inherit;
-    height: inherit;
-    padding: 0;
-    margin: 0;
     font-family: "华文隶书";
     font-size: 5.5em;
-    /* display: inline-flex;
-    align-items: center;
-    justify-content: center; */
-    text-align: center;
-    color: black;
     position: relative;
-    border: 1px solid black;
 }
 
 .hor-middle-line {
@@ -159,18 +135,28 @@ html, body {
     visibility: hidden;
 }
 
+.nest-line {
+    width: calc(var(--middle-tian-width)/2);
+    height: calc(var(--middle-tian-height)/2);
+    border: 1px dashed #a61b29;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+}
+
 /* `田` cell implement end */
 
 #right-panel {
-    flex: 8 8 800px;
-    display: flex;
-    flex-direction: column;
+    background-color: #f0eae9;
+    display: grid;
+    grid-template-rows: 50px 50px auto;
+    grid-gap: 5px;
+    /* border: 2px solid blue; */
 }
 
 /* word progress panel implement */
 
 #words-radical {
-    flex: 1 1 50px;
     background-color: #f0eae9;
     border-bottom: 1px solid #d8d3d3;
     display: flex;
@@ -178,20 +164,22 @@ html, body {
     flex-direction: row;
 }
 
-#words-radical span {
+#words-radical .radical-block {
     width: 28px;
     height: 28px;
-    font-size: 1em;
     color: #afafaf;
     background-color: #f3f3f3;
     margin-left: 3px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: "FZQingKBYSJW-R";
 }
 
 /* word progress panel implement end */
 
 #echo-widget {
-    flex: 1 1 50px;
     background-color: #f0eae9;
     border-bottom: 1px solid #d8d3d3;
     font-size: 2em;
@@ -199,16 +187,13 @@ html, body {
 }
 
 #words-pad {
-    flex: 5 5 450px;
     background-color: #f0eae9;
-    border-left: 2px solid #a61b29;
-    border-top: 2px solid #a61b29;
+    /* border: 2px solid #a61b29; */
     position: relative;
-
-    /* experiment */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(8,0fr);
+    grid-template-rows: repeat(10, 0fr);
+    /* overflow: scroll; */
 }
 
 /* word block */
@@ -221,11 +206,14 @@ html, body {
 }
 
 /* sync style word block `typing layer' and `guide layer` */
-#words-pad .word-block input, span {
+#words-pad .word-block .typing-layer, .guide-layer {
     width: inherit;
     height: inherit;
     padding: 0;
     margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     font-family: "FZQingKBYSJW-R";
     font-size: 4em;
     display: inline-flex;
@@ -235,28 +223,23 @@ html, body {
 }
 
 /* word block `typing layer` */
-#words-pad .word-block input {
+#words-pad .word-block .typing-layer {
     caret-color: black;
     color: transparent;
     background-color: transparent;
     outline: none;
     border-style: none;
-    /* border: 1px solid red; */
-    position: absolute;
-    top: 0;
-    left: 0;
     pointer-events: none;
 }
 
-#words-pad .word-block input:focus {
+#words-pad .word-block .typing-layer:focus {
     outline: none;
     border-style: none;
 }
 
 /* word block `guide layer` */
-#words-pad .word-block span {
-    color: #bbb5b9;
-    position: relative;
+#words-pad .word-block .guide-layer {
+    color: rgba(166, 27, 41, 0.2);
     border: 2px solid #a61b29;
     border-left: none;
     border-top: none;

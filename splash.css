@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "FZQingKBYSJW-R";
+    src: url("./resource/fonts/FZQingKBYSJW-R.TTF");
+}
+
+@keyframes rotate {
+    50% {
+        transform: rotate(0.5turn);
+    }
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+body,
+html {
+    background: #f6ebd7;
+    overflow: hidden;
+    height: 100%;
+    display: grid;
+}
+
+#loading-anim {
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    animation: rotate 1.8s 1s cubic-bezier(0.66, -0.3, 0.66, 1.5);
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.hor-middle-line {
+    width: inherit;
+    height: inherit;
+    border-top: 1px dashed #a61b29;
+    position: absolute;
+    left: 0;
+    top: 40px;
+}
+
+.ver-middle-line {
+    width: inherit;
+    height: inherit;
+    border-left: 1px dashed #a61b29;
+    position: absolute;
+    top: 0;
+    left: 40px;
+}
+
+#guide-layer {
+    width: inherit;
+    height: inherit;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "FZQingKBYSJW-R";
+    font-size: 4em;
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: rgba(166, 27, 41, 0.5);
+    border: 1px solid #a61b29;
+    box-shadow: 4px 4px #a61b29;
+}
