@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  </head>
-    <link href="./styles.css" rel="stylesheet">
-    <title>Tian</title>
-  <body>
+</head>
+<link href="./styles.css" rel="stylesheet">
+<link href="./search.css" rel="stylesheet">
+<title>Tian</title>
+
+<body>
     <audio id="sound-effects">
       <source src="./resource/sound/click.wav">
     </audio>
 
     <div id="main-layout">
-      <div id="right-panel">
-        <div id="words-radical"></div>
-        <div id="echo-widget"></div>
-        <div id="words-pad">
+        <div id="right-panel">
+            <div id="words-radical"></div>
+            <div id="echo-widget"></div>
+            <div id="words-pad">
+            </div>
         </div>
-      </div>
 
-      <div id="detail-panel">
-        <span id="lishu-word"></span>
-      </div>
+        <div id="detail-panel">
+            <span id="lishu-word"></span>
+            <span id="word-roots">字根</span>
+            <span id="word-codes">字码</span>
+            <span id="word-pin">字拼</span>
+        </div>
+
+        <div id="search-panel-layout">
+            <div id="search-bar-container">
+                <input id="search-bar" type="text" spellcheck="false">
+            </div>
+            <div id="search-result">
+                <label id="search-result-list-header">搜索结果</label>
+                <ul id="search-result-list"></ul>
+                <label id="recently-list-header">最近</label>
+                <ul id="recently-list"></ul>
+                <label id="frequency-list-header">高频</label>
+                <ul id="frequency-list"></ul>
+            </div>
+        </div>
     </div>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
-  </body>
+</body>
+
 </html>

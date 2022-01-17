@@ -1,20 +1,16 @@
 /* styles.css */
 
+
 /* Add styles here to customize the appearance of your app */
-
-@font-face {
-    font-family: "SourceHanSerifCN-Regular";
-    src: url("./resource/fonts/SourceHanSerifCN-Regular.ttf");
-}
-
-@font-face {
-    font-family: "SourceHanSansCN-Regular";
-    src: url("./resource/fonts/SourceHanSansCN-Regular.otf");
-}
 
 @font-face {
     font-family: "FZQingKBYSJW-R";
     src: url("./resource/fonts/FZQingKBYSJW-R.TTF");
+}
+
+@font-face {
+    font-family: "98WB-1";
+    src: url("./resource/fonts/98WB-1.otf");
 }
 
 :root {
@@ -22,7 +18,8 @@
     --middle-tian-height: 80px;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     background-color: black;
@@ -46,12 +43,22 @@ html, body {
     /* border: 1px solid aquamarine; */
 }
 
+
 /* `田` cell implement */
 
 #lishu-word {
     font-family: "华文隶书";
     font-size: 5.5em;
     position: relative;
+}
+
+#word-roots,
+#word-codes,
+#word-pin {
+    display: block;
+    position: relative;
+    font-family: '98WB-1';
+    font-size: 2em;
 }
 
 .hor-middle-line {
@@ -144,6 +151,7 @@ html, body {
     top: 25%;
 }
 
+
 /* `田` cell implement end */
 
 #right-panel {
@@ -153,6 +161,7 @@ html, body {
     grid-gap: 5px;
     /* border: 2px solid blue; */
 }
+
 
 /* word progress panel implement */
 
@@ -177,6 +186,7 @@ html, body {
     font-family: "FZQingKBYSJW-R";
 }
 
+
 /* word progress panel implement end */
 
 #echo-widget {
@@ -191,12 +201,14 @@ html, body {
     /* border: 2px solid #a61b29; */
     position: relative;
     display: grid;
-    grid-template-columns: repeat(8,0fr);
+    grid-template-columns: repeat(8, 0fr);
     grid-template-rows: repeat(10, 0fr);
     /* overflow: scroll; */
 }
 
+
 /* word block */
+
 #words-pad .word-block {
     display: inline-block;
     position: relative;
@@ -205,8 +217,11 @@ html, body {
     /* border: 1px solid salmon; */
 }
 
+
 /* sync style word block `typing layer' and `guide layer` */
-#words-pad .word-block .typing-layer, .guide-layer {
+
+#words-pad .word-block .typing-layer,
+.guide-layer {
     width: inherit;
     height: inherit;
     padding: 0;
@@ -222,7 +237,9 @@ html, body {
     justify-content: center;
 }
 
+
 /* word block `typing layer` */
+
 #words-pad .word-block .typing-layer {
     caret-color: black;
     color: transparent;
@@ -237,7 +254,9 @@ html, body {
     border-style: none;
 }
 
+
 /* word block `guide layer` */
+
 #words-pad .word-block .guide-layer {
     color: rgba(166, 27, 41, 0.2);
     border: 2px solid #a61b29;
@@ -253,5 +272,3 @@ html, body {
     left: 0;
     visibility: hidden;
 }
-
-/* <circle cx="0" cy="0" r="2" fill="rgba(237,81,38, 0.7)" /> */

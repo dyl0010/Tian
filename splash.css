@@ -54,7 +54,7 @@ html {
     position: absolute;
     top: 0;
     left: 0;
-    font-family: "FZQingKBYSJW-R";
+    /* font-family: "FZQingKBYSJW-R"; */
     font-size: 4em;
     display: inline-flex;
     text-align: center;

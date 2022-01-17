@@ -6,10 +6,37 @@
 // process.
 
 const { ipcRenderer } = require('electron')
+const search = require('./search')
+
+// search.fill_test()
+
+search.register_listener()
+
+ipcRenderer.on('request-toggle-commandpanel', (event, args) => {
+    search.toggle_search()
+})
 
 setTimeout(() => {
     ipcRenderer.send('app-init')
-}, 3000);
+}, 2000);
+
+const word_roots = document.getElementById('word-roots')
+const word_pin = document.getElementById('word-pin')
+const word_codes = document.getElementById('word-codes')
+
+function get_current_word_info() {
+    const D_KEY = 0
+    const E_KEY = 1
+    const F_KEY = 2
+    let info = ipcRenderer.sendSync('get-word-info', get_current_guide_word())
+
+    console.log(info)
+    if (info.length !== 0) {
+        word_roots.innerText = info[D_KEY]
+        word_codes.innerText = info[E_KEY]
+        word_pin.innerText = info[F_KEY]
+    }
+}
 
 let text = '愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光。'
 let two_radical = '二亠人儿入八冂冖冫几凵刀力勹匕匚匸十卜卩厂厶又'
@@ -164,6 +191,7 @@ function handle_compositionend(event) {
     match_words(event.target.value)
     echo_widget.innerText = ""
     lishu_word.innerText = get_current_guide_word()
+    get_current_word_info()
 }
 
 for (let i = 0; i < word_blocks.length; ++i) {
@@ -176,7 +204,19 @@ for (let i = 0; i < word_blocks.length; ++i) {
     typing_node.onpaste = () => { return false; }
     typing_node.ondrop = () => { return false; }
     typing_node.autocomplete = 'off'
-
-    focus_current()
-    lishu_word.innerText = get_current_guide_word()
 }
+
+focus_current()
+lishu_word.innerText = get_current_guide_word()
+get_current_word_info()
+
+//
+// global keyboard event
+
+document.onkeydown = function(event) {
+    event = event || window.event;
+    if (event.key == 'Escape') {
+        console.log('Escape key down.')
+        search.hide_search()
+    }
+};
