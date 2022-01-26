@@ -1,8 +1,3 @@
-@font-face {
-    font-family: "FZQingKBYSJW-R";
-    src: url("./resource/fonts/FZQingKBYSJW-R.TTF");
-}
-
 @keyframes rotate {
     50% {
         transform: rotate(0.5turn);
@@ -54,7 +49,7 @@ html {
     position: absolute;
     top: 0;
     left: 0;
-    /* font-family: "FZQingKBYSJW-R"; */
+    font-family: "思源宋体 CN SemiBold";
     font-size: 4em;
     display: inline-flex;
     text-align: center;

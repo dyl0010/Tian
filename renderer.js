@@ -38,7 +38,7 @@ function get_current_word_info() {
     }
 }
 
-let text = '愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光。'
+let text = '二〇〇二，愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光。oO'
 let two_radical = '二亠人儿入八冂冖冫几凵刀力勹匕匚匸十卜卩厂厶又'
 
 // ----------------------------------------------------------------------------
@@ -79,7 +79,7 @@ for (let i = 0; i < text.length; ++i) {
         <div class="spot-container">
           <svg class="spot-svg" viewBox="-4.5 -4.5 9 9" xmlns="http://www.w3.org/2000/svg">
             <g>
-              <circle cx="0" cy="0" r="2" fill="rgba(166,27,41, 0.6)" />
+              <circle cx="0" cy="0" r="2" fill="rgba(0,0,0, 0.6)" />
             </g>
           </svg>
         </div>
